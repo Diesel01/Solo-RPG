@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liberdade e responsabilidade</title>
+</head>
+<body>
+
+    <div class="modal-content1" id = "firstQuestion">
+
+        <div class="modal-header1">
+            <span onclick ="closeTrainingModal()" class="close">&times;</span>
+        </div>
+
+        <div class="modal-body1">
+            <form id="respostasForm1">
+                <p id="situaçao1">O seu celular desperta no horário programado, porém você não está com disposição para levantar da cama. É possível dormir mais meia hora, mas isso custaria o tempo de tomar banho e tomar café da manhã. O que você faz?</p>
+                <input class = "respostas1" type="radio" id="a1" name="resposta1"> <label for="a1"> Levanta, mesmo sem disposição, para não se atrasar</label>
+                <input class = "respostas1" type="radio" id="b1" name="resposta1"> <label for="b1"> Dorme mais meia hora na função soneca.</label>
+                <input class = "respostas1" type="radio" id="c1" name="resposta1"> <label for="c1"> Ignora o despertador.</label>
+            </form>
+            <button class = "submit1" id = "firstBtn">Submeter</button>
+        </div>
+
+    </div>
+
+    <template>
+        <div class="modal-content" style="display: none;">
+
+            <div class="modal-header">
+                <span onclick ="closeTrainingModal()" class="close">&times;</span>
+            </div>
+    
+            <div class="modal-body">
+                <form id="respostasForm">
+                    <p id="situaçao"></p>
+                    <!-- <input class = "respostas" type="radio" id="a1" name="resposta2"> <label for="a1"> </label>
+                    <input class = "respostas" type="radio" id="b1" name="resposta2"> <label for="b1"> </label>
+                    <input class = "respostas" type="radio" id="c1" name="resposta2"> <label for="c1"> </label>
+                    <input class = "respostas" type="radio" id="d1" name="resposta2"> <label for="d1"> </label> -->
+                </form>
+                <button class = "submit">Submeter</button>
+            </div>
+
+        </div>
+    </template>
+
+    <script src="index.js"></script>
+</body>
+</html>
