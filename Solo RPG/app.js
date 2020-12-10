@@ -29,6 +29,43 @@ auth.onAuthStateChanged(user =>{
     }
 })
 
+//Firebase database 
+const db = firebase.firestore(); 
+const firstBtn = document.getElementById("firstBtn"); 
+const opt1 = document.getElementById("a1"); 
+const opt2 = document.getElementById("b1"); 
+const opt3 = document.getElementById("c1"); 
+
+let questionRef; 
+let unsubcribe; 
+
+auth.onAuthStateChanged(user => {
+    if (user){
+        questionRef = db.collection("choices"); 
+        firstBtn.onclick = () =>{
+            const {serverTimeStamp} = firebase.firestore.FieldValue; 
+            questionRef.add({
+                uid: user.uid, 
+                question: "q1", 
+                optA: opt1.checked, 
+                optB: opt2.checked, 
+                optC: opt3.checked, 
+                createdAt: serverTimeStamp()
+            })
+        }
+        // unsubcribe = questionRef
+        //     .where("uid", "==", user.uid)
+        //     .onSnapShot(querySnapshot => {
+        //         const items = querySnapshot.docs.map(doc => {
+        //             return 
+        //         })
+        //     })
+    }else {
+        unsubcribe && unsubcribe();
+    }
+})
+
+////////////////////////////////////////////////////////////////
 // App 
 function question1Conseqs (){
     let optA = document.getElementById("a1"); 
