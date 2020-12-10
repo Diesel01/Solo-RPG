@@ -44,14 +44,14 @@ auth.onAuthStateChanged(user => {
         console.log("hi there")
         questionRef = db.collection("choices"); 
         firstBtn.onclick = () =>{
-            const {serverTimestamp} = firebase.firestore.FieldValue(); 
+            // const {serverTimestamp} = firebase.firestore.FieldValue(); 
             questionRef.add({
                 uid: user.uid, 
                 question: "q1", 
                 optA: opt1.checked, 
                 optB: opt2.checked, 
                 optC: opt3.checked, 
-                createdAt: serverTimestamp()
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
             })
         }
         // unsubcribe = questionRef
