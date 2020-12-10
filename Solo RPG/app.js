@@ -41,6 +41,7 @@ let unsubcribe;
 
 auth.onAuthStateChanged(user => {
     if (user){
+        console.log("hi there")
         questionRef = db.collection("choices"); 
         firstBtn.onclick = () =>{
             const {serverTimeStamp} = firebase.firestore.FieldValue; 
