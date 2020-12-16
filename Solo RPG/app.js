@@ -54,13 +54,7 @@ auth.onAuthStateChanged(user => {
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             })
         }
-        // unsubcribe = questionRef
-        //     .where("uid", "==", user.uid)
-        //     .onSnapShot(querySnapshot => {
-        //         const items = querySnapshot.docs.map(doc => {
-        //             return 
-        //         })
-        //     })
+    
     }else {
         unsubcribe && unsubcribe();
     }
