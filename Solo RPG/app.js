@@ -37,14 +37,14 @@ function question1Conseqs (){
     let optC = document.getElementById("c1");
     
     if (optA.checked){
-        document.getElementById("questao3").style.display = "block"
+        document.getElementById("questao3").hidden = false; 
     }else if (optB.checked){
-        document.getElementById("questao"+2).style.display = "block"
+        document.getElementById("questao"+2).hidden = false
     }else if (optC.checked){
-        document.getElementById("questao"+4).style.display = "block"
+        document.getElementById("questao"+4).hidden = false
     }
 
-    document.getElementById("firstQuestion").style.display = "none"
+    document.getElementById("firstQuestion").hidden = false
 }
 document.getElementById("firstBtn").addEventListener("click", question1Conseqs); 
 
@@ -78,18 +78,20 @@ const modalFactory = (qId, situation, options, conseqs) =>{
         let optionSelectorColec = questionTemp.querySelectorAll("input")
         for (let index = 0; index < optionSelectorColec.length; index++) {
             if (optionSelectorColec[index].checked){
-                document.getElementById("questao"+conseqs[index]).style.display = "block"
+                document.getElementById("questao"+conseqs[index]).hidden = false
             };
         }
     }
 
+    const thisQuestionInputs = questionTemp.querySelectorAll("input")
+
     let thisBtn = questionTemp.querySelector(".submit");
         thisBtn.addEventListener("click", function(){
             conseqFunction(); 
-            questionTemp.style.display = "none"; 
+            questionTemp.hidden = true;  
         })
 
-    return { qId, situation, options, conseqs, conseqFunction, thisBtn,  optionSelectorColec } 
+    return { qId, situation, options, conseqs, conseqFunction, thisBtn,  thisQuestionInputs } 
 } 
 
 const q1 = modalFactory(1, "O seu celular desperta no horário programado, porém você não está com disposição para levantar da cama. É possível dormir mais meia hora, mas isso custaria o tempo de tomar banho e tomar café da manhã. O que você faz?",
@@ -112,7 +114,7 @@ const q5 = modalFactory(5, "Duas esquinas após você sentar, entra no ônibus u
 ["Levanta e cede o lugar para a senhora.", "Continua sentado, pois ela não apresenta dificuldade em estar de pé."],
 [7, 6]); 
 
-const q6 = modalFactory(6, "lgumas pessoas que estão no ônibus olham para você com desaprovação pela atitude de não ceder o lugar, como você se sente?", 
+const q6 = modalFactory(6, "Algumas pessoas que estão no ônibus olham para você com desaprovação pela atitude de não ceder o lugar, como você se sente?", 
 ["Acha que as pessoas não devem cuidar da sua vida e está tranquilo, afinal a senhora demonstrou ser bem saudável e não se importar", "Culpado(a) e com certo constrangimento, mas continua sentado(a)", "Cede o lugar para a senhora, mas apenas por pressão dos olhares de desaprovação."], 
 [7, 7, 7]); 
 
@@ -224,7 +226,6 @@ const q33 = modalFactory(33, "Vocês passam um bom tempo juntos, até que decide
 [], 
 []); 
 
-//////////////////////
 //Firebase database 
 const db = firebase.firestore(); 
 const firstBtn = document.getElementById("firstBtn"); 
@@ -232,7 +233,8 @@ const opt1 = document.getElementById("a1");
 const opt2 = document.getElementById("b1"); 
 const opt3 = document.getElementById("c1"); 
 
-const submitBtns = document.querySelector(".submit"); 
+const submitBtns = document.querySelectorAll(".submit"); 
+const questionDivs = document.querySelectorAll(".modal-content"); 
 
 let questionRef; 
 let unsubcribe; 
@@ -241,30 +243,37 @@ auth.onAuthStateChanged(user => {
     if (user){
         console.log("hi there")
         questionRef = db.collection("choices"); 
-        firstBtn.onclick = () =>{
-            // const {serverTimestamp} = firebase.firestore.FieldValue(); 
-            questionRef.add({
-                uid: user.uid, 
-                question: "q1", 
-                optA: opt1.checked, 
-                optB: opt2.checked, 
-                optC: opt3.checked, 
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            })
-        }
+        // firstBtn.onclick = () =>{
+        //     // const {serverTimestamp} = firebase.firestore.FieldValue(); 
+        //     questionRef.add({
+        //         uid: user.uid, 
+        //         question: "q1", 
+        //         optA: opt1.checked, 
+        //         optB: opt2.checked, 
+        //         optC: opt3.checked, 
+        //         createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        //     })
+        // }
         submitBtns.forEach(element => {
-            element.onclick = () =>{
-                questionRef.add({
-                    uid: user.uid, 
-                    question: "${element.", 
-                    optA: opt1.checked, 
-                    optB: opt2.checked, 
-                    optC: opt3.checked, 
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                })
+            element.onclick = () => {
+                for (let i = 0; i<questionDivs.length; i++){
+                    if (questionDivs[i].hidden == false){
+                        let optionsColec = questionDivs[i].querySelectorAll(".respostas")
+                            for (j = 0; j<optionsColec.length; j++){
+                                if (optionsColec[j].checked){
+                                    questionRef.add({
+                                    uid: user.id, 
+                                    question: `${questionDivs[i].id}`, 
+                                    optChecked: `${optionsColec[j].id}`,
+                                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                                })
+                            }
+                        }   
+                        
+                    }
+                }
             }
         });
-    
     }else {
         unsubcribe && unsubcribe();
     }
