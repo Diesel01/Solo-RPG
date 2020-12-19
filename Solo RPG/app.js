@@ -29,37 +29,6 @@ auth.onAuthStateChanged(user =>{
     }
 })
 
-//Firebase database 
-const db = firebase.firestore(); 
-const firstBtn = document.getElementById("firstBtn"); 
-const opt1 = document.getElementById("a1"); 
-const opt2 = document.getElementById("b1"); 
-const opt3 = document.getElementById("c1"); 
-
-let questionRef; 
-let unsubcribe; 
-
-auth.onAuthStateChanged(user => {
-    if (user){
-        console.log("hi there")
-        questionRef = db.collection("choices"); 
-        firstBtn.onclick = () =>{
-            // const {serverTimestamp} = firebase.firestore.FieldValue(); 
-            questionRef.add({
-                uid: user.uid, 
-                question: "q1", 
-                optA: opt1.checked, 
-                optB: opt2.checked, 
-                optC: opt3.checked, 
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            })
-        }
-    
-    }else {
-        unsubcribe && unsubcribe();
-    }
-})
-
 ////////////////////////////////////////////////////////////////
 // App 
 function question1Conseqs (){
@@ -120,7 +89,7 @@ const modalFactory = (qId, situation, options, conseqs) =>{
             questionTemp.style.display = "none"; 
         })
 
-    return { qId, situation, options, conseqs, conseqFunction, thisBtn } 
+    return { qId, situation, options, conseqs, conseqFunction, thisBtn,  optionSelectorColec } 
 } 
 
 const q1 = modalFactory(1, "O seu celular desperta no horário programado, porém você não está com disposição para levantar da cama. É possível dormir mais meia hora, mas isso custaria o tempo de tomar banho e tomar café da manhã. O que você faz?",
@@ -253,4 +222,50 @@ const q32 = modalFactory(32, "Vocês decidem então chamar por auxílio médico 
 
 const q33 = modalFactory(33, "Vocês passam um bom tempo juntos, até que decidem voltar para onde estava o grupo. Passam algumas horas, e já está ficando tarde, seu amigo lhe procura então pra chamarem um táxi e irem embora, afinal, você está na festa escondido de seus pais! A noite foi boa e cheia de histórias pra contar!", 
 [], 
-[])
+[]); 
+
+//////////////////////
+//Firebase database 
+const db = firebase.firestore(); 
+const firstBtn = document.getElementById("firstBtn"); 
+const opt1 = document.getElementById("a1"); 
+const opt2 = document.getElementById("b1"); 
+const opt3 = document.getElementById("c1"); 
+
+const submitBtns = document.querySelector(".submit"); 
+
+let questionRef; 
+let unsubcribe; 
+
+auth.onAuthStateChanged(user => {
+    if (user){
+        console.log("hi there")
+        questionRef = db.collection("choices"); 
+        firstBtn.onclick = () =>{
+            // const {serverTimestamp} = firebase.firestore.FieldValue(); 
+            questionRef.add({
+                uid: user.uid, 
+                question: "q1", 
+                optA: opt1.checked, 
+                optB: opt2.checked, 
+                optC: opt3.checked, 
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            })
+        }
+        submitBtns.forEach(element => {
+            element.onclick = () =>{
+                questionRef.add({
+                    uid: user.uid, 
+                    question: "${element.", 
+                    optA: opt1.checked, 
+                    optB: opt2.checked, 
+                    optC: opt3.checked, 
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                })
+            }
+        });
+    
+    }else {
+        unsubcribe && unsubcribe();
+    }
+})
