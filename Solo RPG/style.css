@@ -1,0 +1,20 @@
+h1 {
+    text-align: center;
+}
+
+h3{ 
+    margin-top: 5%;
+}
+
+#info{ 
+    font-size: larger;
+}
+
+a{
+    color: rgb(36, 123, 160);
+}
+
+.primary{
+    color: white; 
+    background-color: rgb(36, 123, 160);
+}
