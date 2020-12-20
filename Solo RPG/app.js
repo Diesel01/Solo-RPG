@@ -30,38 +30,6 @@ auth.onAuthStateChanged(user =>{
     }
 })
 
-//Firebase database 
-const db = firebase.firestore(); 
-const firstBtn = document.getElementById("firstBtn"); 
-const opt1 = document.getElementById("a1"); 
-const opt2 = document.getElementById("b1"); 
-const opt3 = document.getElementById("c1"); 
-
-const submitBtns = document.querySelectorAll(".submit"); 
-const questionDivs = document.querySelectorAll(".modal-content"); 
-
-let questionRef; 
-let unsubcribe; 
-
-function updateDatabase(){ 
-    auth.onAuthStateChanged(user => {
-        if (user){
-            console.log("hi there")
-            questionRef = db.collection("choices");
-            questionRef.add({
-                uid: user.id, 
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(), 
-                answers: answersArray
-            }) 
-            
-        }else {
-            unsubcribe && unsubcribe();
-        }
-    })
-}
-
-
-
 ////////////////////////////////////////////////////////////////
 // App 
 function question1Conseqs (){
@@ -280,3 +248,32 @@ const q33 = modalFactory(33, "Vocês passam um bom tempo juntos, até que decide
 [], 
 []); 
 
+//Firebase database 
+const db = firebase.firestore(); 
+const firstBtn = document.getElementById("firstBtn"); 
+const opt1 = document.getElementById("a1"); 
+const opt2 = document.getElementById("b1"); 
+const opt3 = document.getElementById("c1"); 
+
+const submitBtns = document.querySelectorAll(".submit"); 
+const questionDivs = document.querySelectorAll(".modal-content"); 
+
+let questionRef; 
+let unsubcribe; 
+
+function updateDatabase(){ 
+    auth.onAuthStateChanged(user => {
+        if (user){
+            console.log("hi there")
+            questionRef = db.collection("choices");
+            questionRef.add({
+                uid: user.id, 
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(), 
+                answers: answersArray
+            }) 
+            
+        }else {
+            unsubcribe && unsubcribe();
+        }
+    })
+}
