@@ -8,6 +8,7 @@ const signInBtn = document.getElementById("signInBtn");
 const signOutBtn = document.getElementById("signOutBtn"); 
 
 const userDetails = document.getElementById("userDetails"); 
+const userLoggedOut = document.getElementById("userLoggedOut")
 
 const provider = new firebase.auth.GoogleAuthProvider(); 
 
@@ -25,9 +26,41 @@ auth.onAuthStateChanged(user =>{
         //not signed in 
         whenSignedIn.hidden = true; 
         whenSignedOut.hidden = false; 
-        userDetails.innerHTML = `<h3>Olá!</h3> <p>Inscreva-se para começar</p>`; 
+        userLoggedOut.innerHTML = `<h3>Olá!</h3> <p>Inscreva-se para começar</p>`; 
     }
 })
+
+//Firebase database 
+const db = firebase.firestore(); 
+const firstBtn = document.getElementById("firstBtn"); 
+const opt1 = document.getElementById("a1"); 
+const opt2 = document.getElementById("b1"); 
+const opt3 = document.getElementById("c1"); 
+
+const submitBtns = document.querySelectorAll(".submit"); 
+const questionDivs = document.querySelectorAll(".modal-content"); 
+
+let questionRef; 
+let unsubcribe; 
+
+function updateDatabase(){ 
+    auth.onAuthStateChanged(user => {
+        if (user){
+            console.log("hi there")
+            questionRef = db.collection("choices");
+            questionRef.add({
+                uid: user.id, 
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(), 
+                answers: answersArray
+            }) 
+            
+        }else {
+            unsubcribe && unsubcribe();
+        }
+    })
+}
+
+
 
 ////////////////////////////////////////////////////////////////
 // App 
@@ -47,6 +80,8 @@ function question1Conseqs (){
     document.getElementById("firstQuestion").hidden = false
 }
 document.getElementById("firstBtn").addEventListener("click", question1Conseqs); 
+
+const answersArray = []; 
 
 const modalFactory = (qId, situation, options, conseqs) =>{
     const temp = document.getElementsByTagName("template")[0]; 
@@ -84,13 +119,32 @@ const modalFactory = (qId, situation, options, conseqs) =>{
     }
 
     const thisQuestionInputs = questionTemp.querySelectorAll("input")
+        
+    const pushingAnswers = () =>{
+        for (let index = 0; index < thisQuestionInputs.length; index++) {
+            const element = thisQuestionInputs[index];
+            if (element.checked){
+                answersArray.push(element.id)
+            }
+        }
+    } 
 
     let thisBtn = questionTemp.querySelector(".submit");
+    
+    if (thisQuestionInputs.length !== 0){
         thisBtn.addEventListener("click", function(){
             conseqFunction(); 
+            pushingAnswers(); 
             questionTemp.hidden = true;  
         })
-
+    }else{ 
+        thisBtn.addEventListener("click", function(){
+            pushingAnswers();   
+            updateDatabase();           
+            questionTemp.hidden = true;  
+        })
+    }
+        
     return { qId, situation, options, conseqs, conseqFunction, thisBtn,  thisQuestionInputs } 
 } 
 
@@ -226,55 +280,3 @@ const q33 = modalFactory(33, "Vocês passam um bom tempo juntos, até que decide
 [], 
 []); 
 
-//Firebase database 
-const db = firebase.firestore(); 
-const firstBtn = document.getElementById("firstBtn"); 
-const opt1 = document.getElementById("a1"); 
-const opt2 = document.getElementById("b1"); 
-const opt3 = document.getElementById("c1"); 
-
-const submitBtns = document.querySelectorAll(".submit"); 
-const questionDivs = document.querySelectorAll(".modal-content"); 
-
-let questionRef; 
-let unsubcribe; 
-
-auth.onAuthStateChanged(user => {
-    if (user){
-        console.log("hi there")
-        questionRef = db.collection("choices"); 
-        // firstBtn.onclick = () =>{
-        //     // const {serverTimestamp} = firebase.firestore.FieldValue(); 
-        //     questionRef.add({
-        //         uid: user.uid, 
-        //         question: "q1", 
-        //         optA: opt1.checked, 
-        //         optB: opt2.checked, 
-        //         optC: opt3.checked, 
-        //         createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        //     })
-        // }
-        submitBtns.forEach(element => {
-            element.onclick = () => {
-                for (let i = 0; i<questionDivs.length; i++){
-                    if (questionDivs[i].hidden == false){
-                        let optionsColec = questionDivs[i].querySelectorAll(".respostas")
-                            for (j = 0; j<optionsColec.length; j++){
-                                if (optionsColec[j].checked){
-                                    questionRef.add({
-                                    uid: user.id, 
-                                    question: `${questionDivs[i].id}`, 
-                                    optChecked: `${optionsColec[j].id}`,
-                                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                                })
-                            }
-                        }   
-                        
-                    }
-                }
-            }
-        });
-    }else {
-        unsubcribe && unsubcribe();
-    }
-})
