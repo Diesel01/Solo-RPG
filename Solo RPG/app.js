@@ -264,7 +264,7 @@ function updateDatabase(){
             console.log("hi there")
             questionRef = db.collection("respostas");
             questionRef.add({
-                uid: user.id, 
+                uid: user.uid, 
                 createdAt: firebase.firestore.FieldValue.serverTimestamp(), 
                 answers: answersArray
             }) 
