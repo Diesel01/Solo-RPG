@@ -93,6 +93,7 @@ const modalFactory = (qId, situation, options, conseqs) =>{
             const element = thisQuestionInputs[index];
             if (element.checked){
                 answersArray.push(element.id)
+                return answersArray
             }
         }
     } 
@@ -102,7 +103,7 @@ const modalFactory = (qId, situation, options, conseqs) =>{
     if (thisQuestionInputs.length !== 0){
         thisBtn.addEventListener("click", function(){
             conseqFunction(); 
-            pushingAnswers(); 
+            pushingAnswers() 
             questionTemp.hidden = true;  
         })
     }else{ 
