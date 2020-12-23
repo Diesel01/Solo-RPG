@@ -31,22 +31,22 @@ auth.onAuthStateChanged(user =>{
 
 ////////////////////////////////////////////////////////////////
 // App 
-function question1Conseqs (){
-    let optA = document.getElementById("a1"); 
-    let optB = document.getElementById("b1");
-    let optC = document.getElementById("c1");
+// function question1Conseqs (){
+//     let optA = document.getElementById("a1"); 
+//     let optB = document.getElementById("b1");
+//     let optC = document.getElementById("c1");
     
-    if (optA.checked){
-        document.getElementById("questao3").hidden = false; 
-    }else if (optB.checked){
-        document.getElementById("questao"+2).hidden = false
-    }else if (optC.checked){
-        document.getElementById("questao"+4).hidden = false
-    }
+//     if (optA.checked){
+//         document.getElementById("questao3").hidden = false; 
+//     }else if (optB.checked){
+//         document.getElementById("questao"+2).hidden = false
+//     }else if (optC.checked){
+//         document.getElementById("questao"+4).hidden = false
+//     }
 
-    document.getElementById("firstQuestion").hidden = false
-}
-document.getElementById("firstBtn").addEventListener("click", question1Conseqs); 
+//     document.getElementById("firstQuestion").hidden = false
+// }
+// document.getElementById("firstBtn").addEventListener("click", question1Conseqs); 
 
 const answersArray = []; 
 
