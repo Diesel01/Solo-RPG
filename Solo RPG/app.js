@@ -15,7 +15,6 @@ const provider = new firebase.auth.GoogleAuthProvider();
 signInBtn.onclick = () => auth.signInWithPopup(provider); 
 signOutBtn.onclick = () => auth.signOut(); 
 
-signInBtn.onclick = () => questao1.hidden = false
 auth.onAuthStateChanged(user =>{
     if (user) {
         //signed in 
@@ -120,6 +119,7 @@ const modalFactory = (qId, situation, options, conseqs) =>{
 const q1 = modalFactory(1, "O seu celular desperta no horário programado, porém você não está com disposição para levantar da cama. É possível dormir mais meia hora, mas isso custaria o tempo de tomar banho e tomar café da manhã. O que você faz?",
 ["Levanta, mesmo sem disposição, para não se atrasar", "Dorme mais meia hora na função soneca.", "Ignora o despertador."],
 [3, 2, 4]);
+signInBtn.onclick = () => questao1.hidden = false
 
 const q2 = modalFactory(2, "Quando você levanta da cama já não resta muito tempo para se arrumar. É necessário escolher entre tomar café da manhã e banho ou chegar na aula com atraso. Qual sua escolha?", 
 ["Chega atrasado, sem fome e de banho tomado.", "Sai sem café e sem tomar banho para chegar no horário"], 
