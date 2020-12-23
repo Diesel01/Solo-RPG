@@ -1,53 +1,4 @@
-//Firebase auth
-const auth = firebase.auth();
-
-const whenSignedIn = document.getElementById("whenSignedIn"); 
-const whenSignedOut = document.getElementById("whenSignedOut"); 
-
-const signInBtn = document.getElementById("signInBtn"); 
-const signOutBtn = document.getElementById("signOutBtn"); 
-
-const userDetails = document.getElementById("userDetails"); 
-const userLoggedOut = document.getElementById("userLoggedOut")
-
-const provider = new firebase.auth.GoogleAuthProvider(); 
-
-signInBtn.onclick = () => auth.signInWithPopup(provider); 
-signOutBtn.onclick = () => auth.signOut(); 
-
-auth.onAuthStateChanged(user =>{
-    if (user) {
-        //signed in 
-        whenSignedIn.hidden = false; 
-        whenSignedOut.hidden = true; 
-        userDetails.innerHTML = `<h3>Olá ${user.displayName}!</h3>`; 
-    } else {
-        //not signed in 
-        whenSignedIn.hidden = true; 
-        whenSignedOut.hidden = false; 
-        userLoggedOut.innerHTML = `<h3>Olá!</h3>`; 
-    }
-})
-
-////////////////////////////////////////////////////////////////
 // App 
-// function question1Conseqs (){
-//     let optA = document.getElementById("a1"); 
-//     let optB = document.getElementById("b1");
-//     let optC = document.getElementById("c1");
-    
-//     if (optA.checked){
-//         document.getElementById("questao3").hidden = false; 
-//     }else if (optB.checked){
-//         document.getElementById("questao"+2).hidden = false
-//     }else if (optC.checked){
-//         document.getElementById("questao"+4).hidden = false
-//     }
-
-//     document.getElementById("firstQuestion").hidden = false
-// }
-// document.getElementById("firstBtn").addEventListener("click", question1Conseqs); 
-
 const answersArray = []; 
 
 const modalFactory = (qId, situation, options, conseqs) =>{
@@ -119,7 +70,6 @@ const modalFactory = (qId, situation, options, conseqs) =>{
 const q1 = modalFactory(1, "O seu celular desperta no horário programado, porém você não está com disposição para levantar da cama. É possível dormir mais meia hora, mas isso custaria o tempo de tomar banho e tomar café da manhã. O que você faz?",
 ["Levanta, mesmo sem disposição, para não se atrasar", "Dorme mais meia hora na função soneca.", "Ignora o despertador."],
 [3, 2, 4]);
-signInBtn.onclick = () => questao1.hidden = false
 
 const q2 = modalFactory(2, "Quando você levanta da cama já não resta muito tempo para se arrumar. É necessário escolher entre tomar café da manhã e banho ou chegar na aula com atraso. Qual sua escolha?", 
 ["Chega atrasado, sem fome e de banho tomado.", "Sai sem café e sem tomar banho para chegar no horário"], 
@@ -248,6 +198,40 @@ const q32 = modalFactory(32, "Vocês decidem então chamar por auxílio médico 
 const q33 = modalFactory(33, "Vocês passam um bom tempo juntos, até que decidem voltar para onde estava o grupo. Passam algumas horas, e já está ficando tarde, seu amigo lhe procura então pra chamarem um táxi e irem embora, afinal, você está na festa escondido de seus pais! A noite foi boa e cheia de histórias pra contar!", 
 [], 
 []); 
+
+//Firebase auth
+const auth = firebase.auth();
+
+const whenSignedIn = document.getElementById("whenSignedIn"); 
+const whenSignedOut = document.getElementById("whenSignedOut"); 
+
+const signInBtn = document.getElementById("signInBtn"); 
+const signOutBtn = document.getElementById("signOutBtn"); 
+
+const userDetails = document.getElementById("userDetails"); 
+const userLoggedOut = document.getElementById("userLoggedOut")
+
+const provider = new firebase.auth.GoogleAuthProvider(); 
+
+signInBtn.onclick = function(){
+    auth.signInWithPopup(provider); 
+    questao1.hidden = false; 
+}
+signOutBtn.onclick = () => auth.signOut(); 
+
+auth.onAuthStateChanged(user =>{
+    if (user) {
+        //signed in 
+        whenSignedIn.hidden = false; 
+        whenSignedOut.hidden = true; 
+        userDetails.innerHTML = `<h3>Olá ${user.displayName}!</h3>`; 
+    } else {
+        //not signed in 
+        whenSignedIn.hidden = true; 
+        whenSignedOut.hidden = false; 
+        userLoggedOut.innerHTML = `<h3>Olá!</h3>`; 
+    }
+})
 
 //Firebase database 
 const db = firebase.firestore(); 
