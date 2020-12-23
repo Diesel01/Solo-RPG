@@ -6,6 +6,12 @@ h3{
     margin-top: 5%;
 }
 
+.introDiv{
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
 #info{ 
     font-size: larger;
 }
@@ -17,4 +23,5 @@ a{
 .primary{
     color: white; 
     background-color: rgb(36, 123, 160);
+    margin-top: 2%;
 }
