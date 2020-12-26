@@ -1,5 +1,6 @@
 h1 {
     text-align: center;
+    margin-top: 1.5%
 }
 
 h3{ 
@@ -10,6 +11,8 @@ h3{
     width: 50%;
     margin: auto;
     text-align: center;
+    margin-top: 5.5%;
+    background-color: rgb(247, 246, 47, 0.34);
 }
 
 #info{ 
@@ -24,4 +27,8 @@ a{
     color: white; 
     background-color: rgb(36, 123, 160);
     margin-top: 2%;
+}
+
+footer{
+    background-color: rgb(154, 214, 214, 0.75);
 }
