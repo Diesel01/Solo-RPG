@@ -1,19 +1,23 @@
 h1 {
     text-align: center;
-    margin-top: 1.5%
+    padding-top: 1.5%
 }
 
 h3{ 
     margin-top: 5%;
 }
 
+.firstDiv{
+    background-color: rgb(247, 246, 47, 0.34);
+}
 .introDiv{
-    width: 50%;
     margin: auto;
     text-align: center;
     margin-top: 5.5%;
-    background-color: rgb(247, 246, 47, 0.34);
 }
+    @media only screen and (min-width: 805px){
+        .introDiv{ width: 50%;}
+    }
 
 #info{ 
     font-size: larger;
@@ -31,4 +35,13 @@ a{
 
 footer{
     background-color: rgb(154, 214, 214, 0.75);
+}
+
+.footerDiv{ 
+    display: flex;
+    width: 50%;
+    margin: auto;
+    font-size: larger;
+    flex-direction: row;
+    align-items: center;
 }

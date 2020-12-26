@@ -24,51 +24,32 @@
     </script>
     <script defer src="app.js"></script>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel = "stylesheet" href="style.css">
 </head>
+
 <body>
-    <!--Front page-->
-    <h1>Solo RPG - Liberdade e Responsabilidade</h1>
-    <section id ='whenSignedOut' class="introDiv">
-        <div id = "userLoggedOut"></div>
-        <div id = "info">
-            <p>Esse website faz parte do <a href = "#footer" title = "Quem somos">Residência Pedagógica da Filosofia (UFSM)</a>. </p>
-            <p>A história que vocês estão prestes a embarcar vai ajudar vocês a pensar o que significa tomar escolhas e quais consequências elas podem ter.</p>
-        </div>
-        <button id = "signInBtn" class = "btn btn primary">Inscreva-se com o Gmail para começar</button>
-    </section>
+    <div class = 'firstDiv'>
+        <!--Front page-->
+        <h1>Solo RPG - Liberdade e Responsabilidade</h1>
+        <section id ='whenSignedOut' class="introDiv col-12-xs" >
+            <div id = "userLoggedOut"></div>
+            <div id = "info">
+                <p>Esse website faz parte do <a href = "#footer" title = "Quem somos">Residência Pedagógica da Filosofia (UFSM)</a>. </p>
+                <p>A história que vocês estão prestes a embarcar vai ajudar vocês a pensar o que significa tomar escolhas e quais consequências elas podem ter.</p>
+            </div>
+            <button id = "signInBtn" class = "btn btn primary">Inscreva-se com o Gmail para começar</button>
+        </section>
 
-    <section id = "whenSignedIn" hidden = 'true' class="introDiv">
-        <div id = "userDetails"></div>
-        <div id = "info">
-            <p>Esse website faz parte do <a href = "#footer" title = "Quem somos">Residência Pedagógica da Filosofia (UFSM)</a>. </p>
-            <p>A história que vocês estão prestes a embarcar vai ajudar vocês a pensar o que significa tomar escolhas e quais consequências elas podem ter.</p>
-        </div>
-        <button id = 'signOutBtn' class = "btn btn primary">Sair</button>
-    </section>
-
-    <!--First question-->
-    <!-- <div class="modal-content1" id = "firstQuestion" hidden>
-        <div class="modal-header1"></div>
-        <div class="modal-body1">
-            <form id="respostasForm1">
-                <p id="situaçao1">O seu celular desperta no horário programado, porém você não está com disposição para levantar da cama. É possível dormir mais meia hora, mas isso custaria o tempo de tomar banho e tomar café da manhã. O que você faz?</p>
-                <input class = "respostas1" type="radio" id="a1" name="resposta1"> <label for="a1"> Levanta, mesmo sem disposição, para não se atrasar</label>
-                <input class = "respostas1" type="radio" id="b1" name="resposta1"> <label for="b1"> Dorme mais meia hora na função soneca.</label>
-                <input class = "respostas1" type="radio" id="c1" name="resposta1"> <label for="c1"> Ignora o despertador.</label>
-            </form>
-            <button class = "submit1" id = "firstBtn">Submeter</button>
-        </div>
-    </div> -->
-
-    <!--Footer com "quem somos"-->
-    <footer>
-        <h4>Quem somos</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </footer>
-
+        <section id = "whenSignedIn" hidden = 'true' class="introDiv">
+            <div id = "userDetails"></div>
+            <div id = "info">
+                <p>Esse website faz parte do <a href = "#footer" title = "Quem somos">Residência Pedagógica da Filosofia (UFSM)</a>. </p>
+                <p>A história que vocês estão prestes a embarcar vai ajudar vocês a pensar o que significa tomar escolhas e quais consequências elas podem ter.</p>
+            </div>
+            <button id = 'signOutBtn' class = "btn btn primary">Sair</button>
+        </section>
+    </div>
 
     <template>
         <div class="modal-content" hidden>
@@ -86,5 +67,14 @@
 
         </div>
     </template>
+
+    <!--Footer com "quem somos"-->
+    <footer>
+        <h4>Quem somos</h4>
+        <div class = "footerDiv">
+            <p>A Residência Pedagógica é um programa financiado pela <a href = "https://www.gov.br/capes/pt-br" target = "blanck">CAPES</a> que visa a inserção de estudantes de licenciatura no contexto escolar, bem como a produção de aulas e materiais didáticos (tipo esse site!).</p>
+            <img src = '../img/rp.png' alt = "Logomarca da Residência Pedagógica, Filosofia, UFSM" width = "268px">
+        </div>
+    </footer>
 </body>
 </html>
