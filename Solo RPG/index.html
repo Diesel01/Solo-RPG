@@ -31,21 +31,31 @@
 <body>
     <div class = 'firstDiv'>
         <!--Front page-->
-        <h1>Solo RPG - Liberdade e Responsabilidade</h1>
+        <div id = "titleDiv"> 
+            <h1>Solo RPG - Liberdade e Responsabilidade</h1>
+        </div>
+
         <section id ='whenSignedOut' class="introDiv col-12-xs" >
-            <div id = "userLoggedOut"></div>
-            <div id = "info">
-                <p>Esse website faz parte do <a href = "#footer" title = "Quem somos">Residência Pedagógica da Filosofia (UFSM)</a>. </p>
-                <p>A história que vocês estão prestes a embarcar vai ajudar vocês a pensar o que significa tomar escolhas e quais consequências elas podem ter.</p>
+            <div>
+                <div id = "userLoggedOut"></div>
+                <div id = "info">
+                    <p>Esse website faz parte da Residência Pedagógica da Filosofia (UFSM). </p>
+                    <p>A história que vocês estão prestes a embarcar vai ajudar vocês a pensar o que significa tomar escolhas e quais consequências elas podem ter.</p>
+                </div>
+                <button id = "signInBtn" class = "btn btn primary">Inscreva-se com o Gmail para começar</button>
             </div>
-            <button id = "signInBtn" class = "btn btn primary">Inscreva-se com o Gmail para começar</button>
+
+            <div id = 'astronautDiv'>                
+                <img src = '../img/Astronaut/Astronaut.png' width= 500px>
+            </div> 
         </section>
 
         <section id = "whenSignedIn" hidden = 'true' class="introDiv">
             <div id = "userDetails"></div>
             <div id = "info">
-                <p>Esse website faz parte do <a href = "#footer" title = "Quem somos">Residência Pedagógica da Filosofia (UFSM)</a>. </p>
+                <p>Esse website faz parte da Residência Pedagógica da Filosofia (UFSM). </p>
                 <p>A história que vocês estão prestes a embarcar vai ajudar vocês a pensar o que significa tomar escolhas e quais consequências elas podem ter.</p>
+                <img src = '../img/Astronaut/Astronaut.png' width= 500px>
             </div>
             <button id = 'signOutBtn' class = "btn btn primary">Sair</button>
         </section>
@@ -70,11 +80,15 @@
 
     <!--Footer com "quem somos"-->
     <footer>
-        <h4>Quem somos</h4>
+        <div class="footerHeader">
+            <h4>Quem somos</h4>
+        </div>
+
         <div class = "footerDiv">
             <p>A Residência Pedagógica é um programa financiado pela <a href = "https://www.gov.br/capes/pt-br" target = "blanck">CAPES</a> que visa a inserção de estudantes de licenciatura no contexto escolar, bem como a produção de aulas e materiais didáticos (tipo esse site!).</p>
             <img src = '../img/rp.png' alt = "Logomarca da Residência Pedagógica, Filosofia, UFSM" width = "268px">
         </div>
+
     </footer>
 </body>
 </html>
