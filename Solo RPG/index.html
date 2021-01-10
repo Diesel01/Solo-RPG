@@ -29,6 +29,7 @@
 </head>
 
 <body>
+
     <div class = 'firstDiv'>
         <!--Front page-->
         <div id = "titleDiv"> 
@@ -46,7 +47,7 @@
             </div>
 
             <div id = 'astronautDiv'>                
-                <img src = '../img/Astronaut/Astronaut.png' width= 500px>
+                <img src = '../img/Astronaut/Astronaut.png' width= 500px id = "astronaut">
             </div> 
         </section>
 
@@ -55,38 +56,35 @@
             <div id = "info">
                 <p>Esse website faz parte da Residência Pedagógica da Filosofia (UFSM). </p>
                 <p>A história que vocês estão prestes a embarcar vai ajudar vocês a pensar o que significa tomar escolhas e quais consequências elas podem ter.</p>
-                <img src = '../img/Astronaut/Astronaut.png' width= 500px>
+                <img src = '../img/Astronaut/Astronaut.png' width= 500px id = "astronaut">
             </div>
             <button id = 'signOutBtn' class = "btn btn primary">Sair</button>
         </section>
     </div>
 
     <template>
-        <div class="modal-content" hidden>
+            <div class="modal modal-content"hidden>
 
-            <div class="modal-header">
+                <div class="modal-header">
+                </div>
+        
+                <div class="modal-body">
+                    <form id="respostasForm">
+                        <p id="situaçao"></p>
+                    </form>
+                    <button class = "submit">Submeter</button>
+                </div>
+
             </div>
-    
-            <div class="modal-body">
-                <form id="respostasForm">
-                    <p id="situaçao"></p>
-
-                </form>
-                <button class = "submit">Submeter</button>
-            </div>
-
-        </div>
     </template>
 
     <!--Footer com "quem somos"-->
     <footer>
-        <div class="footerHeader">
-            <h4>Quem somos</h4>
-        </div>
+        <h4>Quem somos</h4>
 
         <div class = "footerDiv">
             <p>A Residência Pedagógica é um programa financiado pela <a href = "https://www.gov.br/capes/pt-br" target = "blanck">CAPES</a> que visa a inserção de estudantes de licenciatura no contexto escolar, bem como a produção de aulas e materiais didáticos (tipo esse site!).</p>
-            <img src = '../img/rp.png' alt = "Logomarca da Residência Pedagógica, Filosofia, UFSM" width = "268px">
+            <img src = '../img/rp.png' alt = "Logomarca da Residência Pedagógica, Filosofia, UFSM" width = "268px" id = "logoRP">
         </div>
 
     </footer>
