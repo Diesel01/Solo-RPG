@@ -12,19 +12,25 @@ const modalFactory = (qId, situation, options, conseqs) =>{
     
     let respostasForm = questionTemp.querySelector("#respostasForm"); 
     for (let i = 0; i< options.length; i++){
+
+        let respostaDiv = document.createElement("div");
+            respostaDiv.className = "respostaDiv"; 
+            respostaDiv.id = 'resposta'+i+" - "+qId; 
+
         let optionSelector = document.createElement("input"); 
             optionSelector.className = "respostas"; 
             optionSelector.type = "radio"; 
             optionSelector.id = "questao"+qId + "-" + i;
             optionSelector.name = "resposta"+qId;
+        respostaDiv.appendChild(optionSelector);
         
         let optionLabel = document.createElement("label"); 
             optionLabel.className = "respostaLabel";
             optionLabel.htmlFor = "questao"+qId + "-" + i; 
             optionLabel.innerHTML = options[i];
+        respostaDiv.appendChild(optionLabel);
         
-        respostasForm.appendChild(optionSelector);
-        respostasForm.appendChild(optionLabel);   
+        respostasForm.appendChild(respostaDiv);   
     }
     
     const conseqFunction = () =>{
