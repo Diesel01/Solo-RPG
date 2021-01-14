@@ -72,10 +72,6 @@ h1 {
     margin: auto;
 }
 
-h3{ 
-    margin-top: 5%;
-}
-
 .firstDiv{
     background-color: #fbfb9d;
     padding-bottom: 5%;
@@ -144,8 +140,8 @@ footer{
         h4 { padding-bottom: 2%; }
     }
 
-h4{ 
-    font-size: 2rem;
+h3{ 
+    font-size: 1.75rem;
     text-align: center;
     padding-top: 2%;
 }

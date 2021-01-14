@@ -230,12 +230,12 @@ auth.onAuthStateChanged(user =>{
         //signed in 
         whenSignedIn.hidden = false; 
         whenSignedOut.hidden = true; 
-        userDetails.innerHTML = `<h3>Olá ${user.displayName}!</h3>`; 
+        userDetails.innerHTML = `<h2>Olá ${user.displayName}!</h2>`; 
     } else {
         //not signed in 
         whenSignedIn.hidden = true; 
         whenSignedOut.hidden = false; 
-        userLoggedOut.innerHTML = `<h3>Olá!</h3>`; 
+        userLoggedOut.innerHTML = `<h2>Olá!</h2>`; 
     }
 })
 
