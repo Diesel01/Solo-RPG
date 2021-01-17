@@ -33,10 +33,7 @@
     cursor: pointer;
     }
 /* Modal Body */
-.modal-body {
-    text-align: center;
-    font-size: larger;
-}
+.modal-body { font-size: 18px; }
   
 /* Modal Content */
   .modal-content {
@@ -149,6 +146,11 @@ h3{
     align-items: center;
     padding-top: 5px;
     padding-bottom: 5px;
-    text-align: center;
     align-content: center;
+}
+
+label{ 
+    display: inline-block;
+    margin-bottom: .5rem;
+    margin-left: 2%;
 }
