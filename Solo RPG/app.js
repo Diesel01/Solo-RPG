@@ -251,7 +251,7 @@ let unsubcribe;
 function updateDatabase(){ 
     auth.onAuthStateChanged(user => {
         if (user){
-            console.log("hi there")
+            console.log("O que estás fazendo no console? Não há nada para ver aqui!")
             questionRef = db.collection("respostas");
             questionRef.add({
                 uid: user.uid, 
